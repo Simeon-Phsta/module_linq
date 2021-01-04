@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ECOLECONDUITEModelStoreContainer" CdmEntityContainer="ECOLECONDUITEEntities">
+    <EntitySetMapping Name="ELEVEs">
+      <EntityTypeMapping TypeName="ECOLECONDUITEModel.ELEVE">
+        <MappingFragment StoreEntitySet="ELEVE">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="nom" ColumnName="nom" />
+          <ScalarProperty Name="prenom" ColumnName="prenom" />
+          <ScalarProperty Name="rue" ColumnName="rue" />
+          <ScalarProperty Name="ville" ColumnName="ville" />
+          <ScalarProperty Name="cp" ColumnName="cp" />
+          <ScalarProperty Name="creditHoraire" ColumnName="creditHoraire" />
+          <ScalarProperty Name="dateInscription" ColumnName="dateInscription" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LECONs">
+      <EntityTypeMapping TypeName="ECOLECONDUITEModel.LECON">
+        <MappingFragment StoreEntitySet="LECON">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="dateLecon" ColumnName="dateLecon" />
+          <ScalarProperty Name="heure" ColumnName="heure" />
+          <ScalarProperty Name="duree" ColumnName="duree" />
+          <ScalarProperty Name="effectueeO_N" ColumnName="effectueeO/N" />
+          <ScalarProperty Name="idEleve" ColumnName="idEleve" />
+          <ScalarProperty Name="idVehicule" ColumnName="idVehicule" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VEHICULEs">
+      <EntityTypeMapping TypeName="ECOLECONDUITEModel.VEHICULE">
+        <MappingFragment StoreEntitySet="VEHICULE">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="modele" ColumnName="modele" />
+          <ScalarProperty Name="cylindree" ColumnName="cylindree" />
+          <ScalarProperty Name="voitureO_N" ColumnName="voitureO/N" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="pEleve_INSERT" FunctionName="ECOLECONDUITEModel.Store.pEleve_INSERT" />
+  </EntityContainerMapping>
+</Mapping>

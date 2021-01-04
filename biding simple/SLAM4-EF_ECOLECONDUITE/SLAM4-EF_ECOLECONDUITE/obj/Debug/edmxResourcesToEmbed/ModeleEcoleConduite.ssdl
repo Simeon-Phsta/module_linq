@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ECOLECONDUITEModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="ELEVE">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="nom" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="prenom" Type="varchar" MaxLength="50" />
+    <Property Name="rue" Type="varchar" MaxLength="100" />
+    <Property Name="ville" Type="varchar" MaxLength="50" />
+    <Property Name="cp" Type="char" MaxLength="5" />
+    <Property Name="creditHoraire" Type="int" Nullable="false" />
+    <Property Name="dateInscription" Type="smalldatetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="LECON">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="char" MaxLength="10" Nullable="false" />
+    <Property Name="dateLecon" Type="smalldatetime" Nullable="false" />
+    <Property Name="heure" Type="int" Nullable="false" />
+    <Property Name="duree" Type="int" Nullable="false" />
+    <Property Name="effectueeO/N" Type="bit" />
+    <Property Name="idEleve" Type="int" Nullable="false" />
+    <Property Name="idVehicule" Type="char" MaxLength="7" Nullable="false" />
+  </EntityType>
+  <EntityType Name="VEHICULE">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="char" MaxLength="7" Nullable="false" />
+    <Property Name="modele" Type="char" MaxLength="30" />
+    <Property Name="cylindree" Type="int" />
+    <Property Name="voitureO/N" Type="bit" />
+  </EntityType>
+  <Association Name="FK_LECON_ELEVE">
+    <End Role="ELEVE" Type="Self.ELEVE" Multiplicity="1" />
+    <End Role="LECON" Type="Self.LECON" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ELEVE">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="LECON">
+        <PropertyRef Name="idEleve" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LECON_VEHICULE">
+    <End Role="VEHICULE" Type="Self.VEHICULE" Multiplicity="1" />
+    <End Role="LECON" Type="Self.LECON" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="VEHICULE">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="LECON">
+        <PropertyRef Name="idVehicule" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="pEleve_INSERT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="nom" Type="varchar" Mode="In" />
+    <Parameter Name="dateInscription" Type="smalldatetime" Mode="In" />
+    <Parameter Name="prenom" Type="varchar" Mode="In" />
+    <Parameter Name="rue" Type="varchar" Mode="In" />
+    <Parameter Name="ville" Type="varchar" Mode="In" />
+    <Parameter Name="cp" Type="char" Mode="In" />
+    <Parameter Name="creditHoraire" Type="int" Mode="In" />
+  </Function>
+  <EntityContainer Name="ECOLECONDUITEModelStoreContainer">
+    <EntitySet Name="ELEVE" EntityType="Self.ELEVE" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LECON" EntityType="Self.LECON" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="VEHICULE" EntityType="Self.VEHICULE" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_LECON_ELEVE" Association="Self.FK_LECON_ELEVE">
+      <End Role="ELEVE" EntitySet="ELEVE" />
+      <End Role="LECON" EntitySet="LECON" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LECON_VEHICULE" Association="Self.FK_LECON_VEHICULE">
+      <End Role="VEHICULE" EntitySet="VEHICULE" />
+      <End Role="LECON" EntitySet="LECON" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
